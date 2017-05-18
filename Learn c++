@@ -1,0 +1,111 @@
+Removendo caracteres especiais c++
+
+string removeInvalidChar(string text)
+{
+    string::iterator it;
+    /**todos os caracteres que poderam ser usados*/
+    string only = "abcdefghijklmnopqrstuvxwyz0123456789_.";
+    size_t found = text.find_first_not_of(only);
+    while (found!=string::npos)
+    {
+            it=text.begin()+found;
+            text.erase (it);
+            found=text.find_first_not_of(only,found);
+    }
+    return (text);
+}
+
+-----------------------------------------------------------------------------------
+
+Arquivos
+
+#include <iostream.h>
+#include <fstream.h>
+#define LINE_SIZE   1024
+#define DELIMITERS  " \r\n\t"
+using namespace std;
+
+int main(int argc, char *argv[]){
+    char buff[LINE_SIZE] = "";
+    //lendo o arquivo
+    ifstream fin("TESTE.TXT");
+    while(fin) {
+        fin.getline(buff,LINE_SIZE);
+        cout<<buff<<"\n";
+    }
+
+    //escrevendo no arquivo
+    ofstream fout("TESTE.TXT");
+    fout<<"adicionando uma linha no arquivo\n";
+
+}
+ 
+----------------------------------------------------------------------------------- 
+
+Numeros randomicos
+
+#include <string>
+#include <iostream.h>
+using namespace std;
+
+int main(int argc, char *argv[]){
+    int num;
+    srand(time(NULL));
+    num= rand() % 10;
+    cout<<num;
+
+}
+ 
+ ------------------------------------------------------------------------------
+
+Vetores: 
+
+    #include <vector>                        
+
+    std::vector<std::string> meu_vetor; //cria o vetor
+    meu_vetor.push_back("okok");  //adiciono "okok" ao vetor
+    cout<< meu_vetor[0]; //imprime a posicao 0 do vetor 
+
+    
+
+    Outras opções para usar no vetor
+
+    meu_vetor.size() //retorna o tamanho do vetor
+
+    meu_vetor.empty() //Verifica de esta fazio
+
+-----------------------------------------------------------------------------------
+
+Split com C++
+
+#include <string>
+#include <vector>
+#define LINE_SIZE   1024
+#define DELIMITERS  " \r\n\t"
+using namespace std;
+
+//função que faz um split em um char
+void tokenize(const char * str,
+    std::vector<std::string>& tokens,
+    const std::string& delimiters = DELIMITERS ) {
+    std::string mystr( str );
+    std::string::size_type lastPos = mystr.find_first_not_of(delimiters, 0);
+    std::string::size_type pos     = mystr.find_first_of(delimiters, lastPos);
+
+    tokens.clear();
+
+    while (std::string::npos != pos || std::string::npos != lastPos) {
+        tokens.push_back(mystr.substr(lastPos, pos - lastPos));
+        lastPos = mystr.find_first_not_of(delimiters, pos);
+        pos = mystr.find_first_of(delimiters, lastPos);
+    }
+}
+
+
+int main(int argc, char *argv[]){
+    char buff[80] = "nome^email";        
+    std::vector<std::string> split;
+    tokenize(buff, split, "^");
+    cout<<split[0];
+
+}
