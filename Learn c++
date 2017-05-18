@@ -2,7 +2,7 @@ Special Caracteres C++
 
 string removeInvalidChar(string text){
     string::iterator it;
-    /**todos os caracteres que poderam ser usados*/
+    /**caracteres que poderam ser usados*/
     string only = "abcdefghijklmnopqrstuvxwyz0123456789_.";
     size_t found = text.find_first_not_of(only);
     while (found!=string::npos){
