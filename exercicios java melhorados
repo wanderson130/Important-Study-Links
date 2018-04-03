@@ -1,0 +1,110 @@
+import java.util.ArryList;
+import java.util.Iterator;
+
+public class Database{
+	private ArryList<Cliente> clientes;	
+
+	//Construtor para Database
+	public Database(){
+		clientes = ArrayList<Cliente>();
+	}
+
+	//adiciona cliente a lista
+	public void addCliente(Cliente _cliente){
+		clientes.add(_cliente);
+	}
+
+	public void removeCliente(Cliente _cliente){
+		clientes.remove(_cliente);
+	}
+
+	public int numberOFclientes(){
+		return clientes.size();
+	}
+
+	//iterador com funcao print	
+	public void list(){
+		for(Cliente cliente : clientes){
+			System.out.println(cliente);
+			System.out.println(); //n
+		}	
+	}
+}
+
+public class Cliente{
+	private String nome;
+	private String endereco;
+	private String telefone;
+
+	public class Cliente(String nome, String endereco, String telefone) {
+		this.nome = nome;		
+		this.endereco = endereco;
+		this.telefone = telefone;
+	}
+    
+    public void setMatricula(String matricula) { this.matricula = matricula; }
+    public String getMatricula() { return this.matricula; }
+
+	public void setNome(String nome) { this.nome = nome; }
+    public String getNome() { return this.nome; }
+
+    public void setTelefone(String telefone) { this.telefone = telefone; }
+    public String getTelefone() { return this.telefone; }
+
+	public String toString(){
+		String line1 = "nome: " + nome + "*\n" + "matricula: " + matricula + "*\n" + "telefone: " + telefone + "*\n";
+		return line1;
+	}
+
+	public void print(){
+		System.out.println(toString());
+	}
+}
+
+public class PessoaFisica extend Cliente{  
+	private String cpf;
+
+	public class PessoaFisica(String nome, String endereco, String telefone, String cpf){
+		super(nome, endereco, telefone);
+		this.cpf = cpf;
+	}
+
+    public void setCPF(String cpf) { this.cpf = cpf; }
+    public String getCPF() { return this.cpf; }
+	
+	public String toString(){
+		return super.toString() + "CPF: " + cpf + "*\n";
+	}
+
+	public void print(){		
+		System.out.println(toString());
+	}
+}
+
+public class PessoaJuridica extend Cliente{  
+	private String cnpj;
+	private String eFantasia;	
+
+	public class PessoaFisica(String nome, String endereco, String telefone, String cnpj, String eFantasia){
+		super(nome, endereco, telefone);
+		this.cnpj = cnpj;
+		this.eFantasia = eFantasia;	
+	}
+
+	public void setCNPJ(String cnpj) { this.cnpj = cnpj; }
+    public String getCNPJ() { return this.cnpj; }
+	  
+    public void setEFantasia(String eFantasia) { this.eFantasia = eFantasia; }
+    public String getEFantasia() { return this.eFantasia; }
+	
+	public String toString(){
+		return super.toString() + "CNPJ: " + cnpj + "*\n" + "eFantasia: " + eFantasia +"*\n";
+	}
+
+    public void print(){		
+		System.out.println(toString());
+	}
+}
+
+
+
